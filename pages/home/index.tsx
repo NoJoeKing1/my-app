@@ -1,11 +1,15 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from '@/styles/Home.module.css'
+import Head from "next/head";
+import Image from "next/image";
+import { Inter } from "@next/font/google";
+import styles from "@/styles/Home.module.css";
+import { useState } from "react";
+import Link from "next/link";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const [count, setCount] = useState(0);
+  
   return (
     <>
       <Head>
@@ -14,35 +18,33 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>pages/index.tsx</code>
-          </p>
-          <div>
-          <h1 className="text-3xl font-bold underline">
-            Hello world!
-          </h1>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
+      <main>
+        <div className="navbar-box shadow-xl">
+          <div id="navbar-menu" className="inline-grid">
+            <Link href="" className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"><img src="/menu-hamburger.svg"></img></Link>
+          </div>
+          <div className="inline-grid grid-cols-3 content-center">
+            <Link href="" className="nav-card">Something One</Link>
+            <Link href="" className="nav-card">Something Two</Link>
+            <Link href="" className="nav-card">Something Three</Link>
           </div>
         </div>
-
-        <div className={styles.center}>
+        <div className="">
+        </div>
+        <div className={styles.main}>
+          <h1 className="text-3xl font-bold underline">Hello world!</h1>
+          <br></br>
+          <div>
+            <p>You clicked {count} times</p>
+            <button className="bg-zinc-400 hover:bg-zinc-300 text-white font-bold py-2 px-4 rounded" onClick={() => setCount(count + 1)}>Click me</button>
+            <br />
+            { count === 69 ? ( 
+            <h1>NICE!!</h1>
+            ) : null }
+          </div>
+        </div>
+        <Link className={styles.card} href={"/next_page"}>Next Page</Link>
+        {/* <div className={styles.center}>
           <Image
             className={styles.logo}
             src="/next.svg"
@@ -119,8 +121,8 @@ export default function Home() {
               with&nbsp;Vercel.
             </p>
           </a>
-        </div>
+        </div> */}
       </main>
     </>
-  )
+  );
 }
